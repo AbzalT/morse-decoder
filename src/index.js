@@ -36,6 +36,11 @@ const MORSE_TABLE = {
     '----.':  '9',
     '-----':  '0',
 };
+const number = /.{10}/g;
+const dot = /10/g;
+const dash = /11/g;
+const zero = /0/g;
+const space = ' ';
 
 module.exports.decode = expr => 
-     expr.match(/.{10}/g).map(element =>  element.replace(/10/g,".").replace(/11/g,"-").replace(/00/g,"")).map(element => (element == '**********') ? ( element = ' ') : (element = MORSE_TABLE[element])).join('');          
+     expr.match(number).map(element =>  element.replace(dot,'.').replace(dash,'-').replace(zero,'')).map(element => MORSE_TABLE[element] || space).join('');          
